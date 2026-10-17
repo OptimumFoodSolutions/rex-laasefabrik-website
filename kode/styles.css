@@ -1,0 +1,403 @@
+/* Rex Låsefabrik – styles.css
+   Genskabt fra rexlaasefabrik.dk (Elementor-kit 285, Aveo). Alle farver, fonte og afstande styres i :root.
+   Målt på originalen ved 1920 px (17-10-2026): alle sektioner er FULD bredde med 100 px sidemargin (indhold 100–1805 px),
+   tekst har 10 px ekstra indrykning (110 px). Kun footeren er bokset til 1140 px. Bump ?v= i alle sider, når filen ændres. */
+
+:root {
+  --text: #333333;          /* primær, tekst, accent (kit: primary/text/accent) */
+  --secondary: #696969;     /* kit: secondary */
+  --black: #000000;
+  --white: #FFFFFF;
+  --offwhite: #FCFCFC;      /* forsidens kort og fliser */
+  --grey: #F3F3F3;          /* lysegrå sektioner */
+  --grey-2: #F6F6F6;
+  --grey-overlay: #F0F0F0;  /* hero-overlay og titelbånd */
+  --line: #E6E6E6;
+  --sage: #899F85;          /* salviegrøn – bånd, footer, knapper */
+  --sage-dark: #6F856C;     /* mørkegrøn – knapper, rammer, citatbånd */
+  --card: #EAEAEA;          /* tidslinjens kort */
+  --input-border: #69727D;  /* Elementors standard-kant på felter */
+
+  --font-body: 'Poppins', Arial, Helvetica, sans-serif;
+  --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --gutter: 100px;          /* sidemargin på alle sektioner (originalens --padding-left/right) */
+  --inner: 10px;            /* ekstra indrykning af tekst (originalens child-padding) */
+  --header-h: 83px;
+  --footer-w: 1140px;
+  --shadow-header: 0 2px 3px rgba(0, 0, 0, .14);
+}
+
+/* ---------- Basis ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh; display: flex; flex-direction: column;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--white);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--text); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--secondary); }
+p { margin: 0 0 .9em; }
+.text p, .hero-text p, .prose p { color: var(--secondary); }
+.band .text p, .who .box p, .quote-box p { color: var(--white); }
+p:last-child { margin-bottom: 0; }
+ul { margin: 0 0 .9em; padding-left: 1.2em; }
+strong, b { font-weight: 500; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text);
+  margin: 0 0 20px;
+}
+h1 { font-size: 42px; }
+h2 { font-size: 32px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--white); padding: 8px 12px; z-index: 1000; }
+.skip-link:focus { left: 8px; }
+
+.container { width: 100%; padding: 0 var(--gutter); }
+.text { padding: 0 var(--inner); }
+main { flex: 1 0 auto; width: 100%; }
+
+/* ---------- Header (gennemsigtig over hero/titelbånd, hvid og fast ved scroll) ---------- */
+.site-header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent; transition: background .25s, box-shadow .25s;
+}
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: var(--header-h); padding-top: 4px; padding-bottom: 4px;
+}
+.site-header.fixed { position: fixed; background: var(--white); box-shadow: var(--shadow-header); }
+.logo { padding-left: var(--inner); }
+.logo img { width: 300px; height: auto; }
+.nav-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--text); }
+.nav-toggle svg { width: 24px; height: 24px; display: block; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+.nav li { display: flex; align-items: center; }
+.nav li + li::before { content: "|"; color: var(--text); font-weight: 300; padding: 0 2px; }
+.nav a {
+  display: block; padding: 8px 7px;
+  font-size: 15px; font-weight: 400; letter-spacing: 1px; line-height: 20px;
+  color: var(--text); white-space: nowrap;
+}
+.nav a:hover, .nav a.active { color: var(--sage); }
+
+/* ---------- Knapper (41 px høje som originalen) ---------- */
+.btn {
+  display: inline-block; font-family: var(--font-body);
+  font-size: 15px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; line-height: 1;
+  padding: 12px 20px; border: 1px solid transparent; border-radius: 0; cursor: pointer; text-align: center;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.btn-sage { background: var(--sage); color: var(--white); }
+.btn-sage:hover { background: var(--sage-dark); color: var(--white); }
+.btn-dark { background: var(--sage-dark); color: var(--white); }
+.btn-dark:hover { background: var(--sage); color: var(--white); }
+.btn-light { background: var(--grey); color: var(--secondary); }
+.btn-light:hover { background: var(--white); color: var(--text); }
+.btn-outline { background: var(--white); color: var(--text); border-color: var(--sage); }
+.btn-outline:hover { background: var(--sage); color: var(--white); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 20px; }
+
+/* ---------- Hero (forsiden) – slideshow + diagonalt lyst felt, 100vh ---------- */
+.hero { position: relative; min-height: calc(100vh - 25px); display: flex; align-items: center; overflow: hidden; background: #777; }
+.hero .slide { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity .5s; }
+.hero .slide.on { opacity: 1; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(65deg, var(--grey-overlay) 50%, transparent 50%); opacity: .95; }
+.hero .container { position: relative; z-index: 2; padding-top: 60px; padding-bottom: 80px; }
+.hero-text { width: 45%; max-width: 767px; padding: 0 var(--inner); }
+.hero-text .pre { font-family: var(--font-heading); font-size: 30px; margin: 0 0 20px; color: var(--secondary); }
+.hero-text h1 { font-size: 60px; text-transform: uppercase; margin-bottom: 24px; }
+.hero-text p { margin-bottom: 30px; }
+
+/* ---------- Titelbånd på undersider (300 px, overskrift 40 px nederst) ---------- */
+.page-title { position: relative; min-height: 275px; display: flex; align-items: flex-end; background-size: cover; background-position: center; }
+.page-title::before { content: ""; position: absolute; inset: 0; background: var(--grey-overlay); opacity: .95; }
+.page-title .container { position: relative; padding-bottom: 60px; }
+.page-title h1 { font-size: 40px; text-transform: uppercase; margin: 0; padding-left: var(--inner); }
+
+/* ---------- Sektioner ---------- */
+.section { padding: 100px 0; }
+.section.grey { background: var(--grey); }
+.section.offwhite { background: var(--offwhite); }
+.band { background: var(--sage); color: var(--white); }
+.band h2 { color: var(--white); }
+
+/* Grønt bånd: tekst (venstre halvdel) + billedkort (højre halvdel), der stikker 100 px ud forneden */
+.band-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; padding-top: 35px; }
+.band-split .text { padding: 25px 50px 50px var(--inner); }
+.band-split .text h2 { font-size: 50px; text-transform: uppercase; }
+.band-split .text h2.small { font-size: 30px; }
+.band-split .text h2.mid { font-size: 40px; }
+.band-split .text p { margin-bottom: 14px; }
+.band-split .text .btn { margin-top: 10px; }
+.band-split .media { position: relative; margin-bottom: -100px; min-height: 428px; background: var(--white) center/cover no-repeat; }
+.band-split .media.tall { min-height: 524px; }
+.band-split.wide { grid-template-columns: 2fr 1fr; }
+.band + .section { padding-top: 130px; padding-bottom: 95px; } /* 100 px kort + 30 px luft (målt) */
+
+/* Billede med forskudt grøn ramme + tekst (skiftevis side) */
+.frame-split { display: grid; grid-template-columns: 420px 1fr; gap: 100px; align-items: center; }
+.frame-split.text-right { grid-template-columns: 1fr 540px; gap: 100px; }
+.frame-split .text h2 { font-size: 50px; text-transform: uppercase; }
+.frame-split .text h2.small { font-size: 30px; }
+.frame-split .text p { margin-bottom: 24px; }
+.frame-split.text-right .text { text-align: right; }
+.frame-split.text-right .text .btn-row { justify-content: flex-end; }
+.frame { position: relative; padding: 0 20px 20px 0; }
+.frame::after { content: ""; position: absolute; left: 20px; top: 20px; right: 0; bottom: 0; background: var(--sage-dark); z-index: 0; }
+.frame .pic { position: relative; z-index: 1; width: 400px; height: 400px; background: var(--white) center/cover no-repeat; }
+.frame .pic.contain { background-size: contain; }
+.frame .pic.land { width: 410px; height: 273px; }
+.frame.flip { padding: 20px 0 0 20px; }
+.frame.flip::after { left: 0; top: 0; right: 20px; bottom: 20px; }
+.frame.flip .pic { width: 520px; height: 364px; }
+.frame.tall::after { bottom: -140px; }
+
+/* Citat: foto (800×500) til venstre, mørkegrønt bånd (370 px) bagved */
+.quote-section { position: relative; margin: -65px 0 135px; padding: 0; } /* fotoet stikker 65 px op i forrige sektion; 135 px luft til footeren */
+.quote-section::before { content: ""; position: absolute; left: 0; right: 0; top: 65px; bottom: 65px; background: var(--sage-dark); }
+.quote-section .container { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.quote-section .pic { width: 800px; max-width: 100%; height: 500px; margin-left: 26px; background: center/cover no-repeat; }
+.quote-section blockquote { margin: 0; padding: 0 0 0 50px; color: var(--white); font-size: 25px; font-weight: 300; line-height: 1.5; }
+.quote-section blockquote svg, .quote-box svg { width: 50px; height: 50px; fill: var(--white); display: block; margin-bottom: 20px; }
+
+/* Forsiden: hvidt kort (stikker 50 px op i heroen), grøn citatboks og fritlagte låsekasser (to halvdele) */
+.intro { background: var(--grey); padding-bottom: 0; }
+.intro .row { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+.intro .card { position: relative; margin-top: -50px; background: var(--offwhite); padding: 50px; z-index: 1; }
+.intro .card h2 { font-size: 40px; margin: 0; }
+.quote-box { background: var(--sage); color: var(--white); padding: 50px 150px 50px 50px; font-size: 20px; line-height: 1.5; min-height: 325px; }
+.intro .locks { position: relative; z-index: 1; min-height: 395px; margin: 100px 0 0 -100px; background: var(--white) center/cover no-repeat; }
+
+/* Fire fliser (411×200 ved 1920, 20 px mellemrum, 75 px luft) */
+.tiles { background: var(--offwhite); padding: 75px 0; }
+.tiles .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.tile { position: relative; height: 200px; display: flex; align-items: center; justify-content: center; background: center/cover no-repeat; text-align: center; }
+.tile::before { content: ""; position: absolute; inset: 0; background: var(--white); opacity: .9; transition: opacity .3s; }
+.tile:hover::before { opacity: .7; }
+.tile h2 { position: relative; font-size: 30px; letter-spacing: 1px; text-transform: uppercase; margin: 0; padding: 0 6px; color: var(--text); }
+
+/* "Hvem er vi?" – foto i venstre halvdel (853×325 ved 1920, som originalen), grøn boks i højre */
+.who { background: var(--offwhite); }
+.who .container { display: grid; grid-template-columns: 1fr 1fr; }
+.who .photo { grid-column: 1; background: center/cover no-repeat; min-height: 200px; }
+.who .box { position: relative; z-index: 1; grid-column: 2; background: var(--sage); color: var(--white); padding: 50px; min-height: 325px; margin-bottom: -50px; }
+.who .box h2 { color: var(--white); font-size: 40px; }
+.who .box p { margin-bottom: 30px; }
+
+/* Fotobånd */
+.photo-band { min-height: 300px; background: top center/cover no-repeat; background-attachment: fixed; }
+
+/* ---------- Kontakt (to halvdele: tekst + formular) ---------- */
+.section.contact-section.home { padding: 150px 0 85px; }
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+.contact .text h2 { font-size: 50px; text-transform: uppercase; }
+.contact-list { list-style: none; margin: 24px 0 0; padding: 0; }
+.contact-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.contact-list svg { width: 15px; height: 15px; fill: var(--sage); flex: none; }
+.form { padding-left: var(--inner); }
+.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.form .row.one { grid-template-columns: 1fr; }
+.form input[type=text], .form input[type=tel], .form input[type=email], .form textarea {
+  width: 100%; height: 40px; padding: 8px 15px; font: inherit; font-weight: 300; color: var(--text);
+  border: 1px solid var(--input-border); background: var(--white); border-radius: 0;
+}
+.form input::placeholder, .form textarea::placeholder { color: #7a7a7a; }
+.form input:focus, .form textarea:focus { outline: 2px solid var(--sage); outline-offset: 0; border-color: var(--sage); }
+.form textarea { height: 94px; resize: vertical; }
+.form .btn { width: 100%; height: 40px; padding: 0; font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 15px; }
+.form .sr { position: absolute !important; left: 0; top: 0; width: 1px !important; height: 1px !important; padding: 0 !important; border: 0 !important; overflow: hidden; clip: rect(0 0 0 0); }
+.form .note { font-size: 13px; color: var(--secondary); margin-top: 12px; }
+.map { background: #E4E4E0; line-height: 0; }
+.map iframe { width: 100%; height: 300px; border: 0; display: block; }
+
+/* ---------- Forhandlere ---------- */
+.band + .section.dealers { padding-top: 200px; padding-bottom: 200px; }
+.dealers h2 { font-size: 30px; letter-spacing: 1px; text-transform: uppercase; margin: 0 var(--inner) 30px; }
+.dealer-card { background: var(--white); margin: 0 var(--inner); }
+.dealer-group { padding: 25px 35px 0; }
+.dealer-group h3 { font-size: 25px; letter-spacing: 1px; text-transform: uppercase; margin: 0 0 20px; }
+.dealer-group hr { border: 0; border-top: 4px solid var(--sage); margin: 0 0 25px; }
+.dealer-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; margin: 0 -10px; padding-bottom: 25px; }
+.dealer-logos a { width: 197px; height: 120px; display: flex; align-items: center; justify-content: center; padding: 10px; }
+.dealer-logos a.wide { width: 247px; }
+.dealer-logos img { max-width: 100%; height: auto; object-fit: contain; }
+
+@media (max-width: 1500px) { .dealer-logos a, .dealer-logos a.wide { width: calc((100% - 100px) / 6); } }
+
+/* ---------- Tidslinje (Om os) ---------- */
+.band + .section.history { padding-top: 160px; padding-bottom: 100px; }
+.history h2 { font-size: 50px; text-transform: uppercase; margin: 0 var(--inner) 20px; }
+.history hr { border: 0; border-top: 4px solid var(--sage); margin: 0 var(--inner) 60px; }
+.timeline { position: relative; padding: 0 0 40px; margin: 0 var(--inner); }
+.timeline::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; margin-left: -2px; background: var(--sage); }
+.tl-item { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; margin-bottom: 20px; }
+.tl-item .tl-card { position: relative; background: var(--card); padding: 48px 40px; }
+.tl-item .tl-card::after { content: ""; position: absolute; top: 50%; margin-top: -10px; border: 10px solid transparent; }
+.tl-item .tl-card h3 { font-size: 24px; line-height: 1.2; margin-bottom: 12px; }
+.tl-item .tl-card .tl-date-in { display: none; }
+.tl-item .tl-card p { margin: 0; }
+.tl-item .tl-date { font-family: var(--font-heading); font-size: 20px; padding: 0 60px; }
+.tl-item .tl-marker { position: absolute; left: 50%; top: 50%; width: 45px; height: 45px; margin: -22px 0 0 -22px; border-radius: 50%; background: var(--line); display: flex; align-items: center; justify-content: center; }
+.tl-item .tl-marker svg { width: 16px; height: 16px; fill: var(--sage); }
+.tl-item.left .tl-card { grid-column: 1; margin-right: 45px; }
+.tl-item.left .tl-card::after { right: -20px; border-left-color: var(--card); }
+.tl-item.left .tl-date { grid-column: 2; grid-row: 1; text-align: left; }
+.tl-item.right .tl-card { grid-column: 2; margin-left: 45px; }
+.tl-item.right .tl-card::after { left: -20px; border-right-color: var(--card); }
+.tl-item.right .tl-date { grid-column: 1; grid-row: 1; text-align: right; }
+
+/* ---------- Privatlivspolitik / tekstsider ---------- */
+.prose { max-width: 1140px; margin: 0 auto; padding: 0 var(--inner); }
+.prose h2 { font-size: 24px; margin-top: 30px; }
+.prose h3 { font-size: 20px; margin-top: 24px; margin-bottom: 8px; }
+
+/* ---------- Footer (bokset 1140 px, tre kolonner à 380 px) ---------- */
+.site-footer { background: var(--sage); color: var(--white); text-align: center; }
+.site-footer a { color: var(--white); }
+.site-footer a:hover { color: var(--line); }
+.footer-cols { max-width: var(--footer-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 75px 0 75px; }
+.footer-cols > div { padding: 0 30px; }
+.footer-cols > div + div { border-left: 1px solid rgba(255, 255, 255, .25); }
+.footer-cols h5 { color: var(--white); font-size: 30px; text-transform: uppercase; margin-bottom: 20px; }
+.footer-cols p { margin: 0 0 20px; }
+.footer-list { list-style: none; margin: 0; padding: 0; }
+.footer-list li { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 6px; }
+.footer-list svg { width: 13px; height: 13px; fill: var(--white); flex: none; }
+.social { display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center; background: var(--white); color: var(--sage); }
+.social:hover { background: var(--grey); }
+.social svg { width: 14px; height: 14px; fill: var(--sage); }
+.footer-logo img { width: 300px; margin: 0 auto; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .25); padding: 20px var(--gutter); font-size: 11px; }
+
+/* Scroll-til-top-knap fjernet 17-10 – findes ikke i originalen */
+.to-top { display: none; }
+
+/* ---------- 404 ---------- */
+.notfound { text-align: center; padding: 100px var(--gutter); background: var(--grey); }
+.notfound p { margin-bottom: 24px; }
+
+/* ---------- Mellemstore skærme (≤1366): samme layout, mindre sidemargin og billeder ---------- */
+@media (max-width: 1366px) {
+  .frame-split { gap: 60px; }
+  .frame-split.text-right { grid-template-columns: 1fr 480px; gap: 60px; }
+  .frame.flip .pic { width: 460px; height: 322px; }
+  .quote-section .pic { width: 100%; margin-left: 0; }
+  .quote-box { padding-right: 60px; }
+}
+
+/* ---------- Tablet (≤1024) ---------- */
+@media (max-width: 1024px) {
+  :root { --gutter: 20px; --inner: 0px; --header-h: 58px; }
+  h1 { font-size: 38px; } h2 { font-size: 28px; } h3 { font-size: 22px; }
+  .logo img { width: 200px; }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--white); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
+  .site-header:has(.nav.open) { background: var(--white); }
+  .site-header .container { min-height: 58px; padding-top: 4px; padding-bottom: 4px; }
+  .nav.open { display: block; }
+  .nav ul { flex-direction: column; align-items: stretch; }
+  .nav li { display: block; border-top: 1px solid var(--line); }
+  .nav li + li::before { content: none; }
+  .nav a { display: block; text-align: center; font-size: 14px; line-height: 20px; padding: 10px 20px; }
+  .nav a.active { background: var(--sage); color: var(--text); }
+  .nav a:hover { color: var(--text); }
+  .section { padding: 60px 0; }
+  .hero { min-height: calc(100vh - 58px); }
+  .hero .container { padding-top: 100px; padding-bottom: 60px; }
+  .hero::before { background: var(--grey-overlay); opacity: .9; }
+  .hero-text { width: 100%; max-width: 100%; }
+  .hero-text h1 { font-size: 44px; }
+  .quote-box { font-size: 20px; }
+  .intro .locks { margin-left: 0; }
+  .band-split, .band-split.wide, .frame-split, .frame-split.text-right, .quote-section .container, .contact, .intro .row, .who .container { grid-template-columns: 1fr; gap: 30px; }
+  .band-split .text h2, .frame-split .text h2, .contact .text h2, .history h2 { font-size: 36px; }
+  .band-split .text { padding: 15px var(--inner) 10px; }
+  .band-split .media, .band-split .media.tall { margin-bottom: 0; min-height: 360px; }
+  .band-split { padding-bottom: 40px; }
+  .band + .section { padding-top: 60px; }
+  .frame-split.text-right .text { text-align: left; }
+  .frame-split.text-right .text .btn-row { justify-content: flex-start; }
+  .frame-split.text-right .frame { order: -1; }
+  .frame .pic, .frame.flip .pic { width: 100%; height: 320px; }
+  .frame.tall::after { bottom: 0; }
+  .quote-section { padding: 0; }
+  .quote-section::before { top: 0; bottom: 0; }
+  .quote-section .pic { width: 100%; height: 320px; margin: 0; }
+  .quote-section blockquote { padding: 30px var(--inner) 40px; }
+  .quote-section { margin: 0; }
+  .intro .card { margin-top: 0; }
+  .quote-box { padding: 40px 30px; }
+  .intro .locks { margin-top: 0; min-height: 320px; }
+  .tiles .container { grid-template-columns: 1fr 1fr; }
+  .who .box { grid-column: 1; min-height: 0; }
+  .who .photo { min-height: 240px; }
+  .band + .section.dealers, .band + .section.history { padding-top: 60px; padding-bottom: 60px; }
+  .section.contact-section.home { padding: 60px 0; }
+  .tl-item, .tl-item.left .tl-card, .tl-item.right .tl-card { grid-template-columns: 1fr; margin: 0; }
+  .timeline::before { left: 20px; }
+  .tl-item { padding-left: 60px; margin-bottom: 24px; }
+  .tl-item .tl-marker { left: 20px; top: 24px; margin-top: 0; }
+  .tl-item .tl-card::after { display: none; }
+  .tl-item .tl-date, .tl-item.left .tl-date, .tl-item.right .tl-date { grid-column: 1; grid-row: auto; text-align: left; padding: 0 0 8px; }
+  .tl-item .tl-card, .tl-item.left .tl-card, .tl-item.right .tl-card { grid-column: 1; }
+  .footer-cols { grid-template-columns: 1fr; gap: 0; padding: 40px 0; }
+  .footer-cols > div { padding: 30px 20px; }
+  .footer-cols > div + div { border-left: 0; }
+  .footer-logo { order: -1; }
+  .footer-cols > div:nth-child(2) { order: 0; border-top: 1px solid rgba(255, 255, 255, .25); }
+  .footer-cols > div:first-child { order: 1; border-top: 1px solid rgba(255, 255, 255, .25); }
+}
+
+/* ---------- Mobil (≤767) ---------- */
+@media (max-width: 767px) {
+  body { font-size: 14px; }
+  h1 { font-size: 32px; } h2 { font-size: 24px; } h3 { font-size: 20px; }
+  .hero .container { padding-top: 80px; padding-bottom: 40px; }
+  .hero-text .pre { font-size: 25px; }
+  .hero-text h1 { font-size: 33px; }
+  .page-title { min-height: 180px; }
+  .page-title h1 { font-size: 33px; }
+  .page-title .container { padding-bottom: 30px; }
+  .section { padding: 40px 0; }
+  .band-split .text h2, .frame-split .text h2, .contact .text h2, .history h2 { font-size: 30px; }
+  .band-split .text h2.small, .frame-split .text h2.small { font-size: 30px; }
+  .band-split .text h2.mid { font-size: 30px; }
+  .band-split .media, .band-split .media.tall { min-height: 260px; }
+  .frame .pic, .frame.flip .pic { height: 260px; }
+  .intro .card { padding: 25px; }
+  .intro .card h2 { font-size: 30px; }
+  .quote-box { padding: 30px 25px; }
+  .quote-section blockquote { font-size: 20px; }
+  .tile { height: 160px; }
+  .tile h2 { font-size: 25px; }
+  .who .box h2 { font-size: 30px; }
+  .tiles { padding: 40px 0; }
+  .tiles .container { grid-template-columns: 1fr; }
+  .who .box { padding: 30px 25px; }
+  .form .row { grid-template-columns: 1fr; }
+  .dealer-group { padding: 20px 20px 0; }
+  .dealer-group h3 { font-size: 20px; }
+  .dealer-logos { gap: 0; margin: 0; }
+  .dealer-logos a, .dealer-logos a.wide { width: 50%; height: 90px; }
+  .dealer-logos img { max-height: 60px; max-width: 120px; }
+  .tl-item .tl-card { padding: 28px 24px; }
+  .tl-item .tl-card h3 { font-size: 20px; }
+  .tl-item .tl-card .tl-date-in { display: block; font-family: var(--font-heading); font-size: 20px; margin-bottom: 10px; }
+  .tl-item .tl-date { display: none; }
+  .photo-band { background-attachment: scroll; }
+  .footer-logo img { width: 240px; }
+}
