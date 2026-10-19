@@ -1,17 +1,9 @@
 /* Rex Låsefabrik – site.js
-   Header (fast og hvid ved scroll, hamburger), aktivt menupunkt, hero-slideshow, scroll-til-top, årstal og mailto-formular.
+   Hamburger, aktivt menupunkt, hero-slideshow, scroll-til-top, årstal og mailto-formular.
    Ingen eksterne kald. Bump ?v= i alle sider, når filen ændres. */
 (function () {
   'use strict';
   document.documentElement.classList.add('js');
-
-  // --- Header: gennemsigtig øverst, hvid og fast efter 80 px ---
-  var header = document.querySelector('.site-header');
-  if (header) {
-    var onScroll = function () { header.classList.toggle('fixed', window.scrollY > 80); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
 
   // --- Hamburger ---
   var toggle = document.querySelector('.nav-toggle');

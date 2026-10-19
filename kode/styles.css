@@ -70,16 +70,15 @@ h6 { font-size: 16px; }
 .text { padding: 0 var(--inner); }
 main { flex: 1 0 auto; width: 100%; }
 
-/* ---------- Header (gennemsigtig over hero/titelbånd, hvid og fast ved scroll) ---------- */
+/* ---------- Header (hvid og fast fra start – Jacob 19-10) ---------- */
 .site-header {
-  position: absolute; top: 0; left: 0; right: 0; z-index: 100;
-  background: transparent; transition: background .25s, box-shadow .25s;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--white); box-shadow: var(--shadow-header);
 }
 .site-header .container {
   display: flex; align-items: center; justify-content: space-between;
   min-height: var(--header-h); padding-top: 4px; padding-bottom: 4px;
 }
-.site-header.fixed { position: fixed; background: var(--white); box-shadow: var(--shadow-header); }
 .logo { padding-left: var(--inner); }
 .logo img { width: 300px; height: auto; }
 .nav-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--text); }
@@ -156,15 +155,12 @@ main { flex: 1 0 auto; width: 100%; }
 .frame-split .text p { margin-bottom: 24px; }
 .frame-split.text-right .text { text-align: right; }
 .frame-split.text-right .text .btn-row { justify-content: flex-end; }
-.frame { position: relative; padding: 0 20px 20px 0; }
-.frame::after { content: ""; position: absolute; left: 20px; top: 20px; right: 0; bottom: 0; background: var(--sage-dark); z-index: 0; }
-.frame .pic { position: relative; z-index: 1; width: 400px; height: 400px; background: var(--white) center/cover no-repeat; }
+/* Billedet står lige uden forskudt grøn kasse bagved (Jacob 19-10 – originalens 20 px-offset så skævt ud) */
+.frame { position: relative; }
+.frame .pic { position: relative; width: 400px; height: 400px; background: var(--white) center/cover no-repeat; }
 .frame .pic.contain { background-size: contain; }
 .frame .pic.land { width: 410px; height: 273px; }
-.frame.flip { padding: 20px 0 0 20px; }
-.frame.flip::after { left: 0; top: 0; right: 20px; bottom: 20px; }
 .frame.flip .pic { width: 520px; height: 364px; }
-.frame.tall::after { bottom: -140px; }
 
 /* Citat: foto (800×500) til venstre, mørkegrønt bånd (370 px) bagved */
 .quote-section { position: relative; margin: -65px 0 135px; padding: 0; } /* fotoet stikker 65 px op i forrige sektion; 135 px luft til footeren */
@@ -333,7 +329,6 @@ main { flex: 1 0 auto; width: 100%; }
   .frame-split.text-right .text .btn-row { justify-content: flex-start; }
   .frame-split.text-right .frame { order: -1; }
   .frame .pic, .frame.flip .pic { width: 100%; height: 320px; }
-  .frame.tall::after { bottom: 0; }
   .quote-section { padding: 0; }
   .quote-section::before { top: 0; bottom: 0; }
   .quote-section .pic { width: 100%; height: 320px; margin: 0; }
