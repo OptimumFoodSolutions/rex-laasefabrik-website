@@ -134,18 +134,18 @@ main { flex: 1 0 auto; width: 100%; }
 .band { background: var(--sage); color: var(--white); }
 .band h2 { color: var(--white); }
 
-/* Grønt bånd: tekst (venstre halvdel) + billedkort (højre halvdel), der stikker 100 px ud forneden */
-.band-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; padding-top: 35px; }
+/* Grønt bånd: tekst (venstre halvdel) + billedkort (højre halvdel) – kortet står inde i båndet (Jacob 19-10: intet stikker ud) */
+.band-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; padding-top: 35px; padding-bottom: 35px; }
 .band-split .text { padding: 25px 50px 50px var(--inner); }
 .band-split .text h2 { font-size: 50px; text-transform: uppercase; }
 .band-split .text h2.small { font-size: 30px; }
 .band-split .text h2.mid { font-size: 40px; }
 .band-split .text p { margin-bottom: 14px; }
 .band-split .text .btn { margin-top: 10px; }
-.band-split .media { position: relative; margin-bottom: -100px; min-height: 428px; background: var(--white) center/cover no-repeat; }
+.band-split .media { position: relative; min-height: 428px; background: var(--white) center/cover no-repeat; }
 .band-split .media.tall { min-height: 524px; }
 .band-split.wide { grid-template-columns: 2fr 1fr; }
-.band + .section { padding-top: 130px; padding-bottom: 95px; } /* 100 px kort + 30 px luft (målt) */
+.band + .section { padding-top: 100px; padding-bottom: 100px; }
 
 /* Billede med forskudt grøn ramme + tekst (skiftevis side) */
 .frame-split { display: grid; grid-template-columns: 420px 1fr; gap: 100px; align-items: center; }
@@ -162,21 +162,21 @@ main { flex: 1 0 auto; width: 100%; }
 .frame .pic.land { width: 410px; height: 273px; }
 .frame.flip .pic { width: 520px; height: 364px; }
 
-/* Citat: foto (800×500) til venstre, mørkegrønt bånd (370 px) bagved */
-.quote-section { position: relative; margin: -65px 0 135px; padding: 0; } /* fotoet stikker 65 px op i forrige sektion; 135 px luft til footeren */
-.quote-section::before { content: ""; position: absolute; left: 0; right: 0; top: 65px; bottom: 65px; background: var(--sage-dark); }
+/* Citat: foto til venstre inde i det mørkegrønne bånd (Jacob 19-10: intet stikker ud) */
+.quote-section { position: relative; margin: 0 0 100px; padding: 50px 0; }
+.quote-section::before { content: ""; position: absolute; inset: 0; background: var(--sage-dark); }
 .quote-section .container { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
-.quote-section .pic { width: 800px; max-width: 100%; height: 500px; margin-left: 26px; background: center/cover no-repeat; }
+.quote-section .pic { width: 800px; max-width: 100%; height: 500px; margin-left: var(--inner); background: center/cover no-repeat; }
 .quote-section blockquote { margin: 0; padding: 0 0 0 50px; color: var(--white); font-size: 25px; font-weight: 300; line-height: 1.5; }
 .quote-section blockquote svg, .quote-box svg { width: 50px; height: 50px; fill: var(--white); display: block; margin-bottom: 20px; }
 
-/* Forsiden: hvidt kort (stikker 50 px op i heroen), grøn citatboks og fritlagte låsekasser (to halvdele) */
-.intro { background: var(--grey); padding-bottom: 0; }
-.intro .row { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
-.intro .card { position: relative; margin-top: -50px; background: var(--offwhite); padding: 50px; z-index: 1; }
+/* Forsiden: hvidt kort, grøn citatboks og fritlagte låsekasser (to halvdele) – intet overlapper (Jacob 19-10) */
+.intro { background: var(--grey); padding: 50px 0 0; }
+.intro .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.intro .card { position: relative; background: var(--offwhite); padding: 50px; }
 .intro .card h2 { font-size: 40px; margin: 0; }
 .quote-box { background: var(--sage); color: var(--white); padding: 50px 150px 50px 50px; font-size: 20px; line-height: 1.5; min-height: 325px; }
-.intro .locks { position: relative; z-index: 1; min-height: 395px; margin: 100px 0 0 -100px; background: var(--white) center/cover no-repeat; }
+.intro .locks { position: relative; min-height: 395px; background: var(--white) center/cover no-repeat; }
 
 /* Fire fliser (411×200 ved 1920, 20 px mellemrum, 75 px luft) */
 .tiles { background: var(--offwhite); padding: 75px 0; }
@@ -190,7 +190,7 @@ main { flex: 1 0 auto; width: 100%; }
 .who { background: var(--offwhite); }
 .who .container { display: grid; grid-template-columns: 1fr 1fr; }
 .who .photo { grid-column: 1; background: center/cover no-repeat; min-height: 200px; }
-.who .box { position: relative; z-index: 1; grid-column: 2; background: var(--sage); color: var(--white); padding: 50px; min-height: 325px; margin-bottom: -50px; }
+.who .box { position: relative; z-index: 1; grid-column: 2; background: var(--sage); color: var(--white); padding: 50px; min-height: 325px; }
 .who .box h2 { color: var(--white); font-size: 40px; }
 .who .box p { margin-bottom: 30px; }
 
@@ -198,7 +198,7 @@ main { flex: 1 0 auto; width: 100%; }
 .photo-band { min-height: 300px; background: top center/cover no-repeat; background-attachment: fixed; }
 
 /* ---------- Kontakt (to halvdele: tekst + formular) ---------- */
-.section.contact-section.home { padding: 150px 0 85px; }
+.section.contact-section.home { padding: 100px 0; }
 .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 .contact .text h2 { font-size: 50px; text-transform: uppercase; }
 .contact-list { list-style: none; margin: 24px 0 0; padding: 0; }
@@ -221,7 +221,7 @@ main { flex: 1 0 auto; width: 100%; }
 .map iframe { width: 100%; height: 300px; border: 0; display: block; }
 
 /* ---------- Forhandlere ---------- */
-.band + .section.dealers { padding-top: 200px; padding-bottom: 200px; }
+.band + .section.dealers { padding-top: 100px; padding-bottom: 100px; }
 .dealers h2 { font-size: 30px; letter-spacing: 1px; text-transform: uppercase; margin: 0 var(--inner) 30px; }
 .dealer-card { background: var(--white); margin: 0 var(--inner); }
 .dealer-group { padding: 25px 35px 0; }
@@ -235,7 +235,7 @@ main { flex: 1 0 auto; width: 100%; }
 @media (max-width: 1500px) { .dealer-logos a, .dealer-logos a.wide { width: calc((100% - 100px) / 6); } }
 
 /* ---------- Tidslinje (Om os) ---------- */
-.band + .section.history { padding-top: 160px; padding-bottom: 100px; }
+.band + .section.history { padding-top: 100px; padding-bottom: 100px; }
 .history h2 { font-size: 50px; text-transform: uppercase; margin: 0 var(--inner) 20px; }
 .history hr { border: 0; border-top: 4px solid var(--sage); margin: 0 var(--inner) 60px; }
 .timeline { position: relative; padding: 0 0 40px; margin: 0 var(--inner); }
@@ -328,7 +328,7 @@ main { flex: 1 0 auto; width: 100%; }
   .frame-split.text-right .text { text-align: left; }
   .frame-split.text-right .text .btn-row { justify-content: flex-start; }
   .frame-split.text-right .frame { order: -1; }
-  .frame .pic, .frame.flip .pic { width: 100%; height: 320px; }
+  .frame .pic, .frame .pic.land, .frame.flip .pic { width: 100%; height: 320px; }
   .quote-section { padding: 0; }
   .quote-section::before { top: 0; bottom: 0; }
   .quote-section .pic { width: 100%; height: 320px; margin: 0; }
@@ -372,7 +372,7 @@ main { flex: 1 0 auto; width: 100%; }
   .band-split .text h2.small, .frame-split .text h2.small { font-size: 30px; }
   .band-split .text h2.mid { font-size: 30px; }
   .band-split .media, .band-split .media.tall { min-height: 260px; }
-  .frame .pic, .frame.flip .pic { height: 260px; }
+  .frame .pic, .frame .pic.land, .frame.flip .pic { height: 260px; }
   .intro .card { padding: 25px; }
   .intro .card h2 { font-size: 30px; }
   .quote-box { padding: 30px 25px; }
